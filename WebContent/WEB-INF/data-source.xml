@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+       
+    
+     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.url}"
+        p:username="${jdbc.username}"
+		p:password="${jdbc.password}"/>
+    
+     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+     <property name="dataSource">
+      <ref bean="dataSource"/> 
+    </property>
+ 
+    <property name="hibernateProperties">
+       <props>
+         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> 
+         <prop key="hibernate.format_sql">false</prop>
+         <prop key="hibernate.show_sql">false</prop>
+         <prop key="hibernate.hbm2ddl.auto">update</prop>
+         <prop key="hibernate.current_session_context_class">thread</prop>
+          
+       </props>
+     </property>
+ 
+   
+  		<property name="annotatedClasses">
+				<list>
+					<value>com.t4u.crm.bean.User</value>
+  					<value>com.t4u.crm.bean.Oppurtunity</value>
+  					<value>com.t4u.crm.bean.UserRole</value>
+  					<value>com.t4u.crm.bean.Account</value>
+  					<value>com.t4u.crm.bean.Customer</value>
+  					<value>com.t4u.crm.bean.Area</value>
+  					<value>com.t4u.crm.bean.Region</value>
+  					<value>com.t4u.crm.bean.Support</value>
+  					<value>com.t4u.crm.bean.Vertical</value>
+  					<value>com.t4u.crm.bean.WorkStatus</value>
+  					<value>com.t4u.crm.bean.Audit</value>
+			   </list>
+   		</property> 
+       </bean>
+    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+  <property name="sessionFactory" ref="sessionFactory" />
+</bean>
+    </beans>
