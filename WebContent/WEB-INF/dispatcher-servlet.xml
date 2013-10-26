@@ -16,14 +16,15 @@
         
     	<mvc:annotation-driven/> 
     	<context:annotation-config/>
-    	<context:component-scan base-package="com.t4u.crm"/>
-    	<mvc:resources mapping="/resources/**" location="/WEB-INF/view/resources/"></mvc:resources>
+    	<mvc:resources mapping="/resource/**" location="/resources/"></mvc:resources>
     	<context:property-placeholder location="classpath:/db.properties"/> 
-    	
-    	
+    	<context:component-scan base-package="com.t4u.crm.security.controller"></context:component-scan>
+    	<context:component-scan base-package="com.t4u.crm.security.service"></context:component-scan>
+    	<context:component-scan base-package="com.t4u.crm.security.dao"></context:component-scan>
+    	<context:component-scan base-package="com.t4u.crm"></context:component-scan>
     	
   		<import resource="data-source.xml"/>
-  		<!-- <import resource="spring-security.xml"/> -->
+  		<import resource="spring-security.xml"/>
   		<import resource="spring-beans.xml"/>
   		<import resource="view-resolver.xml"/>
        
