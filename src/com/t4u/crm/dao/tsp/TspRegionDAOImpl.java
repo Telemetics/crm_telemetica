@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.t4u.crm.bean.Region;
+import com.t4u.crm.bean.User;
 
 @Repository
 public class TspRegionDAOImpl implements TspRegionDAO{
@@ -21,7 +22,7 @@ public class TspRegionDAOImpl implements TspRegionDAO{
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	
+
 	private List getResultListByHql(String hql){
 		List customerList = null;
 		Session session = getSession();
@@ -37,7 +38,7 @@ public class TspRegionDAOImpl implements TspRegionDAO{
 		}
 		return customerList;
 	}
-	
+
 
 	@Override
 	public Region getRegion(int id) {
@@ -53,6 +54,15 @@ public class TspRegionDAOImpl implements TspRegionDAO{
 			e.printStackTrace();
 		}
 		return region;
+	}
+
+	@Override
+	public List getRegionListByUser(User user) {
+		System.out.println(user.getUserId());
+		List regionList = null;
+		regionList = getResultListByHql("select u.region.regionId, u.region.regionName, u.region.pincode " +
+				"from User as u where u.userId ="+user.getUserId());
+		return regionList;
 	}
 
 }

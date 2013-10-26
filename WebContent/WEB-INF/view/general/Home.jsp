@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<form action="tsp/addcustomer" method="post">
+<form action="tsp/addCustomer" method="post">
 <table width="370" height="382" border="1">
   <tr>
     <td width="116">customerName</td>
