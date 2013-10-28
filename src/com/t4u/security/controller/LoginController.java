@@ -13,15 +13,15 @@ public class LoginController {
 
 	@RequestMapping(value="/loginPage.do", method = RequestMethod.GET)
 	public ModelAndView goLogin(){
-		return new ModelAndView("general/Login"); 
+		return new ModelAndView("Login"); 
 	}
 
-	@RequestMapping(value="/login.do", method=RequestMethod.POST) 
+	/*@RequestMapping(value="/login.do", method=RequestMethod.POST) 
 	public ModelAndView login(@ModelAttribute Login login){
 		ModelAndView modelAndView = null;
 
 		modelAndView = new ModelAndView("general/Home");
 
 		return modelAndView;
-	}
+	}*/
 }

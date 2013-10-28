@@ -32,7 +32,7 @@
          <prop key="hibernate.format_sql">false</prop>
          <prop key="hibernate.show_sql">false</prop>
          <prop key="hibernate.hbm2ddl.auto">update</prop>
-         <prop key="hibernate.current_session_context_class">thread</prop>
+         <prop key="hibernate.current_session_context_class">thread</prop> 
           
        </props>
      </property>
@@ -40,19 +40,21 @@
    
   		<property name="annotatedClasses">
 				<list>
-					<value>com.t4u.crm.bean.User</value>
-  					<value>com.t4u.crm.bean.Oppurtunity</value>
-  					<value>com.t4u.crm.bean.UserRole</value>
-  					<value>com.t4u.crm.bean.Account</value>
-  					<value>com.t4u.crm.bean.Customer</value>
-  					<value>com.t4u.crm.bean.Area</value>
-  					<value>com.t4u.crm.bean.Region</value>
-  					<value>com.t4u.crm.bean.Support</value>
-  					<value>com.t4u.crm.bean.Vertical</value>
-  					<value>com.t4u.crm.bean.WorkStatus</value>
-  					<value>com.t4u.crm.bean.Audit</value>
+					<value>com.t4u.bean.User</value>
+  					<value>com.t4u.bean.Oppurtunity</value>
+  					<value>com.t4u.bean.UserRole</value>
+  					<value>com.t4u.bean.Account</value>
+  					<value>com.t4u.bean.Customer</value>
+  					<value>com.t4u.bean.Area</value>
+  					<value>com.t4u.bean.Region</value>
+  					<value>com.t4u.bean.Support</value>
+  					<value>com.t4u.bean.Vertical</value>
+  					<value>com.t4u.bean.WorkStatus</value>
+  					<value>com.t4u.bean.Audit</value>
+  					<value>com.t4u.bean.Stage</value>
+  					<value>com.t4u.bean.Reason</value>
 			   </list>
-   		</property> 
+   		</property>  
        </bean>
     <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
   <property name="sessionFactory" ref="sessionFactory" />

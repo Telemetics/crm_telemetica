@@ -6,7 +6,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.t4u.bean.Area;
-import com.t4u.crm.validators.RegionValidator;
 
 public class AreaValidator implements Validator{
 

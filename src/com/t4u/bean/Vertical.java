@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,23 +28,27 @@ public class Vertical implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int verticalId;
-	@OneToMany(mappedBy="vertical")
-	private Set<Account> accounts=new HashSet<Account>();
+	
 	private String verticalName;
 	private String verticalType;
 	private String description;
-	private String activeFlag;
+	
+	@Column( columnDefinition = "TINYINT(1)")
+	private boolean activeFlag;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createTimestamp;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTimestamp;
 
-	@ManyToOne
+	@OneToOne 
 	private User createdUser;
-	@ManyToOne
+	@OneToOne
 	private User updatedUser;
-	/*@OneToMany(mappedBy="vertical")
-	private Set<Account> accounts=new HashSet<Account>();*/
+	@OneToMany(mappedBy="vertical")
+	private Set<Account> accounts=new HashSet<Account>();
+	@OneToMany(mappedBy="vertical")
+	private Set<Oppurtunity> oppurtunities=new HashSet<Oppurtunity>();
+	
 	@OneToOne
 	private Oppurtunity oppurtunity;
 	
@@ -70,10 +77,10 @@ public class Vertical implements java.io.Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getActiveFlag() {
+	public boolean getActiveFlag() {
 		return activeFlag;
 	}
-	public void setActiveFlag(String activeFlag) {
+	public void setActiveFlag(boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 	public Date getCreateTimestamp() {
@@ -100,12 +107,7 @@ public class Vertical implements java.io.Serializable {
 	public void setUpdatedUser(User updatedUser) {
 		this.updatedUser = updatedUser;
 	}
-	/*public Set<Account> getAccounts() {
-		return accounts;
-	}
-	public void setAccounts(Set<Account> accounts) {
-		this.accounts = accounts;
-	}*/
+	
 	public Oppurtunity getOppurtunity() {
 		return oppurtunity;
 	}

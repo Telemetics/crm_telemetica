@@ -12,6 +12,73 @@
     
     
     
-   
+    <security:global-method-security
+        secured-annotations="enabled" 
+        jsr250-annotations="enabled">
+        <security:protect-pointcut  access="ROLE_ASM"  expression="execution(* com.t4u.service.asm.*.*(..))"/>
+        <security:protect-pointcut access="ROLE_RSM"  expression="execution(* com.t4u.service.rsm.*.*(..))"/>
+        <security:protect-pointcut access="ROLE_LTSP"  expression="execution(* com.t4u.service.ltsp.*.*(..))"/>
+        <security:protect-pointcut access="ROLE_SALESHEAD"  expression="execution(* com.t4u.service.sales_head.*.*(..))"/>
+        <security:protect-pointcut access="ROLE_PMOHEAD"  expression="execution(* com.t4u.service.pmo_head.*.*(..))"/>
+    </security:global-method-security>
+      
+	<http auto-config="true"  create-session="always">
+	   
+		
+		<intercept-url pattern="/ltsp/**" access="ROLE_LTSP" />
+		<intercept-url pattern="/asm/**" access="ROLE_ASM"/>
+		<intercept-url pattern="/rsm/**" access="ROLE_RSM"/>
+		<intercept-url pattern="/salesHead/**" access="ROLE_SALESHEAD"/>
+		<intercept-url pattern="/pmoHead/**" access="ROLE_PMOHEAD"/>
+		<security:form-login 
+		    always-use-default-target="true"
+		    
+		    />
+		<logout invalidate-session="true" logout-success-url="/home/tiles" delete-cookies="JSESSIONID"/>
+		 <security:custom-filter  after="FORM_LOGIN_FILTER" ref="customUsernamePasswordAuthenticationFilter"/>
+		 
+		 <security:session-management >
+		     <security:concurrency-control  max-sessions="1"/>
+		     
+		 </security:session-management>
+    </http>
+		<beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder">
+		    <beans:constructor-arg value="256"></beans:constructor-arg>
+		</beans:bean>
+		<beans:bean class=" org.springframework.security.authentication.dao.ReflectionSaltSource" id="saltSource">
+		    <beans:property name="userPropertyToUse" value="salt"/>
+		    
+		</beans:bean>
+	
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<!-- <security:password-encoder ref="passwordEncoder">
+			    
+			    <security:salt-source ref="saltSource"/>
+			</security:password-encoder> -->
+			<security:password-encoder hash="plaintext"></security:password-encoder>
+			
+		</authentication-provider>
+	</authentication-manager>
+	<beans:bean id="customUserDetailsService" class="com.t4u.security.service.CustomUserDetailsService"></beans:bean>
+	
+	<beans:bean id="customUsernamePasswordAuthenticationFilter" class="com.t4u.security.service.CustomUsernamePasswordAuthenticationFilter">
+	    <beans:property name="authenticationManager" ref="authenticationManager"/>
+	    <beans:property name="filterProcessesUrl" value="/login.do"/>
+	     <beans:property name="passwordParameter" value="password"/>
+	      <beans:property name="usernameParameter" value="userName"/>
+	    <beans:property name="authenticationFailureHandler" ref="failureHandler"/>
+	    <beans:property name="authenticationSuccessHandler" ref="customSuccessHandler"/>
+	</beans:bean>   
+	   <beans:bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+ 		<beans:property name="defaultFailureUrl" value="/error.do"/>
+	</beans:bean>
+	   
+	
+	<beans:bean id="customSuccessHandler" class="com.t4u.security.service.CustomSimpleUrlAuthenticationSuccessHandler">
+	    <beans:property name="defaultTargetUrl" value="/user/secure.do"></beans:property>
+	    
+	    </beans:bean>
+	
 	
 	</beans:beans>

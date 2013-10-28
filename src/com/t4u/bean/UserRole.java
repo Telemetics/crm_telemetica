@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,9 +26,9 @@ public class UserRole implements java.io.Serializable {
 	private String userRole;
 	private String description;
 	
-	@ManyToOne
+	@OneToOne
 	private User createdUser;
-	@ManyToOne
+	@OneToOne
 	private User updatedUser;
 	
 	@OneToMany(mappedBy="userRole",fetch=FetchType.LAZY)

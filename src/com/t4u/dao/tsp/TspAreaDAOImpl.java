@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.t4u.bean.Area;
-import com.t4u.crm.dao.tsp.TspAreaDAO;
 
 @Repository
 public class TspAreaDAOImpl implements TspAreaDAO{

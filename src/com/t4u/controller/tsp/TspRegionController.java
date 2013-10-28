@@ -23,6 +23,7 @@ public class TspRegionController {
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		User user = new User();
 		user.setUserId(1);
+		resultMap.put("success", true);
 		resultMap.put("data", tspRegionService.getRegionListByUser(user));
 		return resultMap;
 	}

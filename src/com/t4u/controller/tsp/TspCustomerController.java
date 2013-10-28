@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.t4u.bean.Customer;
 import com.t4u.bean.User;
-import com.t4u.crm.validators.CustomerValidator;
 import com.t4u.services.tsp.TspCustomerServiceImpl;
+import com.t4u.validators.CustomerValidator;
 
 @Controller
 @RequestMapping("/tsp")
-//@SessionAttributes("currentUser")
+@SessionAttributes("currentUser")
 public class TspCustomerController {
 
 	@Autowired
@@ -36,24 +37,25 @@ public class TspCustomerController {
 			resultMap.put("properties_error", result.getAllErrors());
 		}else{
 			tspService.addCustomer(customer);
+			resultMap.put("success", true);
 			resultMap.put("data", customer);
 		}
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value="/updateCustomer",method=RequestMethod.POST)
 	public @ResponseBody Object updateCustomer(@ModelAttribute Customer customer, @ModelAttribute("currentUser") User user, BindingResult result){
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-			tspService.updateCustormer(customer);
-			resultMap.put("data", customer);
+		resultMap.put("success", true);
+		tspService.updateCustormer(customer);
+		resultMap.put("data", customer);
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value="/getCustomers")
-	public @ResponseBody Object getCustomers(/*@ModelAttribute("currentUser") User user*/){
+	public @ResponseBody Object getCustomers(@ModelAttribute("currentUser") User user){
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-		User user = new User();
-		user.setUserId(1);
+		resultMap.put("success", true);
 		resultMap.put("data", tspService.getCustomersByUser(user));
 		return resultMap;
 	}

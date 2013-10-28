@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.t4u.bean.User;
-import com.t4u.crm.util.PropertiesMapConverter;
 import com.t4u.dao.tsp.TspRegionDAO;
+import com.t4u.util.PropertiesMapConverter;
 
 @Service
 public class TspRegionServiceImpl implements TspRegionService{
