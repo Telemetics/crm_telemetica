@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.t4u.crm.bean.Customer;
+import com.t4u.bean.Customer;
 
 @Component
 public class CustomerValidator implements Validator{

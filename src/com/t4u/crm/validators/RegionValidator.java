@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.t4u.crm.bean.Region;
+import com.t4u.bean.Region;
 
 public class RegionValidator implements Validator {
 
