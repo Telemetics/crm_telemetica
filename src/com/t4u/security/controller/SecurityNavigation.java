@@ -1,5 +1,8 @@
 package com.t4u.security.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -19,24 +22,16 @@ public class SecurityNavigation {
 	@RequestMapping("/userlogin.do")
 	public String loginForm() {
 
-		return "login"; 
+		return "general/login"; 
 	}
 
 	@RequestMapping("/error.do")
-	public String invalidLogin(ModelMap map) {
+	public @ResponseBody Object invalidLogin(ModelMap map) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("message", "Invalide login..!");
+		resultMap.put("success", false);
 		map.addAttribute("error", true);
-		return "login";
-	}
-	@RequestMapping("/test")
-	public @ResponseBody ModelMap successLogin(@Valid User user,BindingResult result) {
-		ModelMap map=new ModelMap();
-		if(result.hasErrors()){
-			map.addAttribute("errors", result.getAllErrors());
-			return map;
-		}
-		else {
-			return null;
-		}
+		return resultMap;
 	}
 
 	

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -14,25 +15,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "t4u_stage", catalog = "t4u_db")
+@Table(name = "T4U_STAGE", catalog = "T4U_DB")
 public class Stage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="STAGE_ID")
 	private int stageId;
+	@Column(name="STAGE_NAME")
 	private String stageName;
+	@Column(name="DESCRIPTION")
 	private String description;
-	@Column( columnDefinition = "TINYINT(1)")
-	private boolean activeFlag;
+	@Column(name="ACTIVE_FLAG")
+	private String activeFlag;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="CREATE_TIMESTAMP")
 	private Date createTimestamp;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="UPDATE_TIMESTAMP")
 	private Date updateTimestamp;
-	@ManyToOne
-	private User createdUser;
-	@ManyToOne
-	private User updatedUser;
 	@OneToOne
-	private Oppurtunity oppurtunity;
+	@JoinColumn(name="CREATED_USER_ID")
+	private User createdUser;
+	@OneToOne
+	@JoinColumn(name="UPDATED_USER_ID")
+	private User updatedUser;
+	
 
 	public int getStageId() {
 		return stageId;
@@ -58,13 +65,7 @@ public class Stage {
 		this.description = description;
 	}
 
-	public boolean isActiveFlag() {
-		return activeFlag;
-	}
-
-	public void setActiveFlag(boolean activeFlag) {
-		this.activeFlag = activeFlag;
-	}
+	
 
 	public Date getCreateTimestamp() {
 		return createTimestamp;
@@ -98,11 +99,13 @@ public class Stage {
 		this.updatedUser = updatedUser;
 	}
 
-	public Oppurtunity getOppurtunity() {
-		return oppurtunity;
+	
+
+	public String getActiveFlag() {
+		return activeFlag;
 	}
 
-	public void setOppurtunity(Oppurtunity oppurtunity) {
-		this.oppurtunity = oppurtunity;
+	public void setActiveFlag(String activeFlag) {
+		this.activeFlag = activeFlag;
 	}
 }

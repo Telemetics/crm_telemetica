@@ -41,7 +41,7 @@
   		<property name="annotatedClasses">
 				<list>
 					<value>com.t4u.bean.User</value>
-  					<value>com.t4u.bean.Oppurtunity</value>
+  					<value>com.t4u.bean.Opportunity</value>
   					<value>com.t4u.bean.UserRole</value>
   					<value>com.t4u.bean.Account</value>
   					<value>com.t4u.bean.Customer</value>
@@ -53,6 +53,7 @@
   					<value>com.t4u.bean.Audit</value>
   					<value>com.t4u.bean.Stage</value>
   					<value>com.t4u.bean.Reason</value>
+  					<value>com.t4u.bean.Zone</value>
 			   </list>
    		</property>  
        </bean>

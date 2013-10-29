@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -14,25 +15,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "t4u_reason", catalog = "t4u_db")
+@Table(name = "T4U_REASON", catalog = "T4U_DB")
 public class Reason {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="REASON_ID")
 	private int reasonId;
+	@Column(name="REASON_CODE")
 	private String reasonCode;
+	@Column(name="REASON_TEXT")
 	private String reasonText;
-	@Column( columnDefinition = "TINYINT(1)")
-	private boolean activeFlag;
+	@Column(name="ACTIVE_FLAG")
+	private String activeFlag;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="CREATE_TIMESTAMP")
 	private Date createTimestamp;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="UPDATE_TIMESTAMP")
 	private Date updateTimestamp;
 	@OneToOne
+	@JoinColumn(name="CREATED_USER_ID")
 	private User createdUser;
 	@OneToOne
+	@JoinColumn(name="UPDATED_USER_ID")
 	private User updatedUser;
-	@OneToOne
-	private Oppurtunity oppurtunity;
+	
 	public int getReasonId() {
 		return reasonId;
 	}
@@ -51,10 +58,10 @@ public class Reason {
 	public void setReasonText(String reasonText) {
 		this.reasonText = reasonText;
 	}
-	public boolean isActiveFlag() {
+	public String getActiveFlag() {
 		return activeFlag;
 	}
-	public void setActiveFlag(boolean activeFlag) {
+	public void setActiveFlag(String activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 	public Date getCreateTimestamp() {
@@ -81,11 +88,6 @@ public class Reason {
 	public void setUpdatedUser(User updatedUser) {
 		this.updatedUser = updatedUser;
 	}
-	public Oppurtunity getOppurtunity() {
-		return oppurtunity;
-	}
-	public void setOppurtunity(Oppurtunity oppurtunity) {
-		this.oppurtunity = oppurtunity;
-	}
+	
 
 }
