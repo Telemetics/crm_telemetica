@@ -1,4 +1,4 @@
-package com.t4u.dao.tsp;
+package com.t4u.dao.entitydao;
 
 import java.util.List;
 
@@ -9,64 +9,52 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.t4u.bean.Area;
+import com.t4u.bean.Region;
 
 @Repository
-public class TspAreaDAOImpl implements TspAreaDAO{
-	
+public class RegionDAOImpl implements RegionDAO{
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	
-	private List getResultListByHql(String hql){
-		List customerList = null;
+
+
+	@Override
+	public Region getRegion(int id) {
+		Region region = null;
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
 			transaction.begin();
-			Query query = session.createQuery(hql);
-			customerList = query.list();
+			region = (Region) session.load(Region.class, id);
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
-		return customerList;
+		return region;
 	}
 
-	@Override
-	public List getAreaList() {
-		List areaList = null;
-		areaList = getResultListByHql("select areaId, areaName from Area");
-		return areaList;
-	}
-	
 
 	@Override
-	public Area getAreaById(int id) {
-		Area area = null;
+	public List<Region> getRegions() {
+		List<Region> regions = null;
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
 			transaction.begin();
-			area = (Area) session.load(Area.class, id);
+			Query query = session.createQuery("From Region");
+			regions =query.list();
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
-		return area;
+		return regions;
 	}
 
-	@Override
-	public List getAreaListByRegion(int id) {
-		List areaList = null;
-		areaList = getResultListByHql("from Area as a where a.region.regionId="+id);
-		return areaList;
-	}
 
 }

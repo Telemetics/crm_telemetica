@@ -47,7 +47,7 @@ public class Account implements java.io.Serializable {
 	private String activeFlag;
 	@Column(name = "ACCOUNT_NAME")
 	private String accountName;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -63,9 +63,13 @@ public class Account implements java.io.Serializable {
 	private String address;
 	@Column(name = "CITY")
 	private String city;
+	@Column(name="STATE")
+	private String state;
+	@Column(name="COUNTRY")
+	private String country;
 	@Column(name = "PINCODE")
 	private Integer pincode;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIMESTAMP")
 	private Date createTimestamp;
@@ -79,13 +83,13 @@ public class Account implements java.io.Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "AREA_ID")
 	private Area area;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "REGION_ID")
 	private Region region;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "VERTICAL_ID")
 	private Vertical vertical;
 	@OneToOne
@@ -97,146 +101,205 @@ public class Account implements java.io.Serializable {
 	@OneToOne
 	@JoinColumn(name = "ZONE_ID")
 	private Zone zone;
+
 	public int getAccountId() {
 		return accountId;
 	}
+
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
+
 	public Set<Opportunity> getOpportunities() {
 		return opportunities;
 	}
+
 	public void setOpportunities(Set<Opportunity> opportunities) {
 		this.opportunities = opportunities;
 	}
+
 	public Integer getNumberOfVehicles() {
 		return numberOfVehicles;
 	}
+
 	public void setNumberOfVehicles(Integer numberOfVehicles) {
 		this.numberOfVehicles = numberOfVehicles;
 	}
+
 	public String getActiveFlag() {
 		return activeFlag;
 	}
+
 	public void setActiveFlag(String activeFlag) {
 		this.activeFlag = activeFlag;
 	}
+
 	public String getAccountName() {
 		return accountName;
 	}
+
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getMobile() {
 		return mobile;
 	}
+
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+
 	public String getTelephone2() {
 		return telephone2;
 	}
+
 	public void setTelephone2(String telephone2) {
 		this.telephone2 = telephone2;
 	}
+
 	public String getFax() {
 		return fax;
 	}
+
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public Integer getPincode() {
 		return pincode;
 	}
+
 	public void setPincode(Integer pincode) {
 		this.pincode = pincode;
 	}
+
 	public Date getCreateTimestamp() {
 		return createTimestamp;
 	}
+
 	public void setCreateTimestamp(Date createTimestamp) {
 		this.createTimestamp = createTimestamp;
 	}
+
 	public Date getUpdateTimestamp() {
 		return updateTimestamp;
 	}
+
 	public void setUpdateTimestamp(Date updateTimestamp) {
 		this.updateTimestamp = updateTimestamp;
 	}
+
 	public String getContactPerson() {
 		return contactPerson;
 	}
+
 	public void setContactPerson(String contactPerson) {
 		this.contactPerson = contactPerson;
 	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	public Area getArea() {
 		return area;
 	}
+
 	public void setArea(Area area) {
 		this.area = area;
 	}
+
 	public Region getRegion() {
 		return region;
 	}
+
 	public void setRegion(Region region) {
 		this.region = region;
 	}
+
 	public Vertical getVertical() {
 		return vertical;
 	}
+
 	public void setVertical(Vertical vertical) {
 		this.vertical = vertical;
 	}
+
 	public User getCreatedUser() {
 		return createdUser;
 	}
+
 	public void setCreatedUser(User createdUser) {
 		this.createdUser = createdUser;
 	}
+
 	public User getUpdatedUser() {
 		return updatedUser;
 	}
+
 	public void setUpdatedUser(User updatedUser) {
 		this.updatedUser = updatedUser;
 	}
+
 	public Zone getZone() {
 		return zone;
 	}
+
 	public void setZone(Zone zone) {
 		this.zone = zone;
 	}
-	
-	
-	
 
-	}
+}

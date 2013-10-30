@@ -1,68 +1,72 @@
 package com.t4u.dao.tsp;
 
+
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.t4u.bean.Account;
+import com.t4u.bean.Area;
 import com.t4u.bean.Region;
-import com.t4u.bean.User;
+import com.t4u.bean.Zone;
 
 @Repository
-public class TspRegionDAOImpl implements TspRegionDAO{
-
+public class TspAccountDAOImpl implements TspAccountDAO {
+	
 	@Autowired
-	private SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 
 	private Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}
-
-	private List getResultListByHql(String hql){
-		List customerList = null;
+	
+	@Override
+	public void addAccount(Account account) {
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
 			transaction.begin();
-			Query query = session.createQuery(hql);
-			customerList = query.list();
+			session.save(account);
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
-		return customerList;
 	}
 
-
 	@Override
-	public Region getRegion(int id) {
-		Region region = null;
+	public Account getAccoutn(int id) {
+		Account account = null;
 		Session session = getSession();
 		Transaction transaction = session.beginTransaction();
 		try {
 			transaction.begin();
-			region = (Region) session.load(Region.class, id);
+			account = (Account) session.load(Account.class, id);
 			transaction.commit();
 		} catch (HibernateException e) {
 			transaction.rollback();
 			e.printStackTrace();
 		}
-		return region;
+		return account;
 	}
 
 	@Override
-	public List getRegionListByUser(User user) {
-		System.out.println(user.getUserId());
-		List regionList = null;
-		regionList = getResultListByHql("select u.region.regionId, u.region.regionName, u.region.pincode " +
-				"from User as u where u.userId ="+user.getUserId());
-		return regionList;
+	public void updateAccount(Account account) {
+		Session session = getSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			transaction.begin();
+			session.update(account);
+			transaction.commit();
+		} catch (HibernateException e) {
+			transaction.rollback();
+			e.printStackTrace();
+		}		
 	}
-
+	
 }

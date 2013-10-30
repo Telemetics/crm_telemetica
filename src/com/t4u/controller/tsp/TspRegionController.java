@@ -18,7 +18,7 @@ public class TspRegionController {
 	@Autowired
 	TspRegionService tspRegionService;
 	
-	@RequestMapping(value="/getRegionList")
+	/*@RequestMapping(value="/getRegionList")
 	public @ResponseBody Object getRegionList(){
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		User user = new User();
@@ -26,5 +26,5 @@ public class TspRegionController {
 		resultMap.put("success", true);
 		resultMap.put("data", tspRegionService.getRegionListByUser(user));
 		return resultMap;
-	}
+	}*/
 }

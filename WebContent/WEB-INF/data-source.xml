@@ -54,6 +54,8 @@
   					<value>com.t4u.bean.Stage</value>
   					<value>com.t4u.bean.Reason</value>
   					<value>com.t4u.bean.Zone</value>
+  					<value>com.t4u.bean.State</value>
+  					<value>com.t4u.bean.Country</value>
 			   </list>
    		</property>  
        </bean>

@@ -34,6 +34,8 @@ public class Opportunity implements java.io.Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="OPPORTUNITY_ID")
 	private int oppurtunityId;
+	@Column(name="OPPORTUNITY_NAME")
+	private String oppurtunityName;
 	@Column(name="NO_OF_VEHICLES")
 	private Integer numberOfVehicles;
 	@Temporal(TemporalType.DATE)
@@ -53,6 +55,25 @@ public class Opportunity implements java.io.Serializable {
 	private String activeFlag;
 	@Column(name="CONTACT_PERSON")
 	private String contactPerson;
+	
+	@Column(name = "TELEPHONE_1")
+	private String mobile;
+	@Column(name = "TELEPHONE_2")
+	private String telephone2;
+	@Column(name = "FAX")
+	private String fax;
+	@Column(name = "EMAIL")
+	private String email;
+	@Column(name = "ADDRESS")
+	private String address;
+	@Column(name = "CITY")
+	private String city;
+	@Column(name="STATE")
+	private String state;
+	@Column(name="COUNTRY")
+	private String country;
+	@Column(name = "PINCODE")
+	private Integer pincode;
 
 	@OneToOne
 	@JoinColumn(name="CREATED_USER_ID")
@@ -78,6 +99,12 @@ public class Opportunity implements java.io.Serializable {
 	@OneToOne
 	@JoinColumn(name="REASON_ID")
 	private Reason reason;
+	@OneToOne
+	@JoinColumn(name = "AREA_ID")
+	private Area area;
+	@OneToOne
+	@JoinColumn(name = "REGION_ID")
+	private Region region;
 	@OneToOne
 	@JoinColumn(name="ZONE_ID")
 	private Zone zone;
@@ -131,6 +158,14 @@ public class Opportunity implements java.io.Serializable {
 
 	public void setCreateTimestamp(Date createTimestamp) {
 		this.createTimestamp = createTimestamp;
+	}
+
+	public String getOppurtunityName() {
+		return oppurtunityName;
+	}
+
+	public void setOppurtunityName(String oppurtunityName) {
+		this.oppurtunityName = oppurtunityName;
 	}
 
 	public Date getUpdateTimestamp() {
@@ -187,6 +222,94 @@ public class Opportunity implements java.io.Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getTelephone2() {
+		return telephone2;
+	}
+
+	public void setTelephone2(String telephone2) {
+		this.telephone2 = telephone2;
+	}
+
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Integer getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
 	}
 
 	public Vertical getVertical() {

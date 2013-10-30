@@ -14,7 +14,7 @@ import com.t4u.util.PropertiesMapConverter;
 public class TspCustomerServiceImpl implements TspCustomerService{
 
 	@Autowired
-	TspCustomerDAO teCustomerDAO;
+	private TspCustomerDAO teCustomerDAO;
 	
 	
 	@Override
